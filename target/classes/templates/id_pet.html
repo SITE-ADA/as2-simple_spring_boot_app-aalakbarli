@@ -1,0 +1,42 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"><html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body {
+            background: red;
+            font-size: 16px;
+        }
+        div {
+            margin: 25%;
+        }
+        a {
+            color: azure;
+            text-decoration: none;
+        }
+        input {
+            padding: 10px;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+<a href="/">Index</a>
+
+<div>
+    <h1>Id:</h1>
+    <h1 th:text="${pet.petId}">Id</h1>
+    <h1>Name:</h1>
+    <h1 th:text="${pet.name}">Name</h1>
+    <h1>Owner:</h1>
+    <h1 th:text="${pet.owner} ?: 'No Owner'">Owner</h1>
+    <h1 th:if="${pet.owner}">Remove from owner:</h1>
+    <a th:if="${pet.owner}" th:href="@{/pet/{id}/remove_from_owner(id=${pet.petId})}">Remove from owner</a>
+</div>
+
+</body>
+</html>
