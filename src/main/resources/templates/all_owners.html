@@ -1,0 +1,48 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"><html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body {
+            background: red;
+            font-size: 16px;
+        }
+        div {
+            margin: 10%;
+        }
+        a {
+            color: azure;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+<a href="/owner/create">Create new Owner</a>
+<a href="/">Index</a>
+<div>
+    <table>
+        <tr th:if="${#lists.isEmpty(owners)}">
+            <td>No owners</td>
+        </tr>
+        <tr>
+            <td>Id</td>
+            <td>Name</td>
+            <td>Action 1</td>
+            <td>Action 2</td>
+            <td>Action 3</td>
+        </tr>
+        <tr th:each="owner : ${owners}">
+            <td th:text="${owner.ownerId}">Id</td>
+            <td th:text="${owner.name}">Name</td>
+            <td><a th:href="@{/owner/{id}(id=${owner.ownerId})}">View owner</a></td>
+            <td><a th:href="@{/owner/{id}/update(id=${owner.ownerId})}">Update owner</a></td>
+            <td><a th:href="@{/owner/{id}/delete(id=${owner.ownerId})}">Delete owner</a></td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

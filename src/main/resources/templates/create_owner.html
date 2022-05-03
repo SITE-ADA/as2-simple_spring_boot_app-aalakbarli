@@ -1,0 +1,37 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"><html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body {
+            background: red;
+            font-size: 16px;
+        }
+        div {
+            margin: 25%;
+        }
+        a {
+            color: azure;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+<a href="/">Index</a>
+
+<div>
+    <h1>Owner information</h1>
+    <form th:action="@{/owner/save_new}" th:object="${owner}" method="post">
+        <input type="hidden" th:field="*{ownerId}">
+        Owner Name: <input type="text" th:field="*{name}"><br>
+        <input type="submit" value="Save">
+    </form>
+</div>
+
+</body>
+</html>

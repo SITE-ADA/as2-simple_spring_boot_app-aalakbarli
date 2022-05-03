@@ -1,0 +1,59 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"><html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body {
+            background: red;
+            font-size: 16px;
+        }
+        div {
+            margin: 25%;
+        }
+        a {
+            color: azure;
+            text-decoration: none;
+        }
+        input {
+            padding: 10px;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+<a href="/">Index</a>
+<div>
+    <h1>Id:</h1>
+    <h1 th:text="${owner.ownerId}">Id</h1>
+    <h1>Name:</h1>
+    <h1 th:text="${owner.name}">Name</h1>
+    <h1>Pets:</h1>
+    <table>
+        <tr th:if="${#lists.isEmpty(owner.pets)}">
+            No pets.
+        </tr>
+        <tr th:unless="${#lists.isEmpty(owner.pets)}">
+            <td>Pet id</td>
+            <td>Pet name</td>
+            <td>Pet animal</td>
+            <td>Action 1</td>
+            <td>Action 2</td>
+            <td>Action 3</td>
+        </tr>
+        <tr th:each="pet : ${owner.pets}">
+            <td th:text="${pet.petId}">Pet id</td>
+            <td th:text="${pet.name}">Pet name</td>
+            <td th:text="${pet.animal}">Pet animal</td>
+            <td><a th:href="@{/pet/{id}(id=${pet.petId})}">View pet</a></td>
+            <td><a th:href="@{/pet/{id}/update(id=${pet.petId})}">Update pet</a></td>
+            <td><a th:href="@{/pet/{id}/delete(id=${pet.petId})}">Delete pet</a></td>
+            <td><a th:href="@{/owner/{oid}/{pid}/deleteOwnerPet(oid=${owner.ownerId}, pid=${pet.petId})}">Disown Pet</a></td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>
